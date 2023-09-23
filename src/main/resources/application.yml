@@ -1,0 +1,64 @@
+####################################################################################
+#                                      SERVER                                      #
+####################################################################################
+server:
+  # form data size
+  tomcat:
+    max-http-form-post-size: 20MB
+  servlet:
+    encoding:
+      charset: UTF-8
+      force: true
+      enabled: true
+  error:
+    path: /error
+    # always | never
+    include-stacktrace: never
+    whitelabel.enabled: false
+
+####################################################################################
+#                                      SPRING                                      #
+####################################################################################
+spring:
+  profiles:
+    active: local
+  # swagger 3 path match
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  main:
+    allow-bean-definition-overriding: true
+  output:
+    ansi:
+      enabled: always
+  jpa:
+    open-in-view: false
+    defer-datasource-initialization: true
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+        enable_lazy_load_no_trans: true
+        order_inserts: true
+        order_updates: true
+        default_batch_fetch_size: 100
+        # batch insert size
+        jdbc:
+          batch_size: 1000
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+  session:
+    store-type: jdbc
+
+####################################################################################
+#                                      CUSTOM                                      #
+####################################################################################
+custom:
+  title: "Shared Schedule API"
+  version: "0.0.1"
+  header:
+    timezone: "TZ"
