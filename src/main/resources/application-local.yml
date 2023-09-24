@@ -1,0 +1,39 @@
+####################################################################################
+#                                      SERVER                                      #
+####################################################################################
+server:
+  port: 8080
+
+####################################################################################
+#                                      SPRING                                      #
+####################################################################################
+spring:
+  config:
+    activate:
+      on-profile: local
+  jpa:
+    properties:
+      hibernate:
+        hbm2ddl:
+          # create | create-drop | none | update | validate
+          auto: update
+  batch:
+    jdbc:
+      # always | embedded | never
+      initialize-schema: never
+    job:
+      # Prevent batch execution on application startup
+      enabled: false
+  datasource:
+    url: "jdbc:mysql://localhost:3306/schedule"
+    url-option: "?serverTimezone=UTC&useLegacyDatetimeCode=false&characterEncoding=UTF-8&useSSL=false&allowPublicKeyRetrieval=true"
+    username: "api_admin"
+    password: "rootroot"
+
+
+####################################################################################
+#                                  CUSTOM                                          #
+####################################################################################
+custom:
+
+
