@@ -14,7 +14,15 @@ import lombok.NoArgsConstructor;
 @Table(name = "calendar")
 public class Calendar extends RootEntity {
 
-  @Column(name = "name")
-  private String name;
+    @Column(name = "name")
+    private String name;
+
+    private Calendar(String name) {
+        this.name = name;
+    }
+
+    public static Calendar create(String name) {
+        return new Calendar(name);
+    }
 
 }

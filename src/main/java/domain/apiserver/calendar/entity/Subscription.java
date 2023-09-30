@@ -1,10 +1,6 @@
 package domain.apiserver.calendar.entity;
 
-import domain.apiserver.core.entity.ChildEntity;
-import domain.apiserver.core.entity.RootEntity;
-import domain.apiserver.core.repository.DomainRepository;
 import domain.apiserver.member.entity.Member;
-import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -22,16 +18,25 @@ import lombok.NoArgsConstructor;
 @Table(name = "subscription")
 public class Subscription {
 
-  @Id
-  @GeneratedValue
-  private Long id;
+    @Id
+    @GeneratedValue
+    private Long id;
 
-  @ManyToOne(optional = false, fetch = FetchType.LAZY)
-  @JoinColumn(name = "member_id", referencedColumnName = "id")
-  private Member member;
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id", referencedColumnName = "id")
+    private Member member;
 
-  @ManyToOne(optional = false, fetch = FetchType.LAZY)
-  @JoinColumn(name = "calendar_id", referencedColumnName = "id")
-  private Calendar calendar;
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "calendar_id", referencedColumnName = "id")
+    private Calendar calendar;
+
+    private Subscription(Member member, Calendar calendar) {
+        this.member = member;
+        this.calendar = calendar;
+    }
+
+    public static Subscription create(Member member, Calendar calendar) {
+        return new Subscription(member, calendar);
+    }
 
 }
