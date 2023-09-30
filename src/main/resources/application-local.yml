@@ -16,7 +16,7 @@ spring:
       hibernate:
         hbm2ddl:
           # create | create-drop | none | update | validate
-          auto: create
+          auto: update
   batch:
     jdbc:
       # always | embedded | never
