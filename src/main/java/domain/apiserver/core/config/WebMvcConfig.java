@@ -1,10 +1,12 @@
 package domain.apiserver.core.config;
 
+import domain.apiserver.core.converter.YesOrNoEnumConverter;
 import domain.apiserver.core.mapper.DateMapper;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.format.FormatterRegistry;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -32,18 +34,15 @@ public class WebMvcConfig implements WebMvcConfigurer {
         registry.addInterceptor(logInterceptor).addPathPatterns("/**");
     }
 
-//    /**
-//     * 파라메터 변환 처리
-//     *
-//     * @param registry 레지스트리
-//     */
-//    @Override
-//    public void addFormatters(FormatterRegistry registry) {
-//        registry.addConverter(new YearMonthConverter());
-//        registry.addConverter(new YesOrNoEnumConverter());
-//        registry.addConverter(new GenderEnumConverter());
-//        registry.addConverter(new JoinTypeEnumConverter());
-//    }
+    /**
+     * 파라메터 변환 처리
+     *
+     * @param registry 레지스트리
+     */
+    @Override
+    public void addFormatters(FormatterRegistry registry) {
+        registry.addConverter(new YesOrNoEnumConverter());
+    }
 
     /**
      * CORS 설정

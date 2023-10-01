@@ -11,6 +11,7 @@ import lombok.Getter;
 public enum Errors {
     BAD_REQUEST(1001, "잘못된 요청입니다"),
 
+    NOT_FOUND_MEMBER(4001, "존재하지 않는 사용자입니다."),
 
     EXTERNAL_API_ERROR(1, "요청을 처리하던 중 예상하지 못한 오류가 발생했습니다"),
     INTERNAL_SERVER_ERROR(9999, "요청을 처리하던 중 예상하지 못한 오류가 발생했습니다"),
